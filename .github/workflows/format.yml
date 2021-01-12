@@ -1,0 +1,22 @@
+name: Format
+
+on: push
+
+jobs:
+  build:
+    name: Format
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install dependencies
+        run: yarn install
+      - name: Format
+        run: yarn format:check
