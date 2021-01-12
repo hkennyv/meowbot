@@ -8,6 +8,8 @@
 
 A simple twitter bot made to explore the Twitter API. I have not decided yet what I want to do with it yet...
 
+Currently, this bot tweets "meow" everyday at 7:00PM PST.
+
 See it in action here: <https://twitter.com/winstondakitten>
 
 ## License
