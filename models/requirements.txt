@@ -1,1 +1,5 @@
 aitextgen
+
+black
+isort
+flake8

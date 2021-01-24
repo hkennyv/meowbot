@@ -1,5 +1,16 @@
+# data
 *.zip
-venv/
+*.txt
+messages/
 
+# python
 *.pyc
 __pycache__/
+venv/
+
+# model artifacts
+aitextgen/
+trained_models/
+
+# ide
+.vscode/
