@@ -1,0 +1,27 @@
+name: Black
+
+on: push
+
+jobs:
+  build:
+    name: Run black
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python@3.6.1
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.6.1"
+
+      - name: Install dependencies
+        run: |
+          cd models/
+          pip install -r requirements.txt
+
+      - name: Format *.py files with black
+        run: |
+          cd models/
+          black **/*.py
