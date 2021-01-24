@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://github.com/hkennyv/meowbot/actions?query=workflow%3ABlack"><img alt="CI" src="https://img.shields.io/github/workflow/status/hkennyv/meowbot/Black?label=black"></a>
+</p>
+
 # Models
 
 This directory contains the files related to the GPT2 models. The approach for
