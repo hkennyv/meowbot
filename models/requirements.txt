@@ -3,3 +3,5 @@ aitextgen
 black
 isort
 flake8
+
+functions-framework
