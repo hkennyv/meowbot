@@ -4,7 +4,7 @@ name: gcloud-publish
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   publish-saumil:
