@@ -24,7 +24,7 @@ if not (TMP_PATH / "model.bin").exists():
     )
     config.download_to_filename(TMP_PATH / "config.json")
 
-ai = aitextgen(model=Path("model.bin"), config=Path("config.json"))
+ai = aitextgen(model=TMP_PATH / "model.bin", config=TMP_PATH / "config.json")
 
 
 def generate_text_from_model(
