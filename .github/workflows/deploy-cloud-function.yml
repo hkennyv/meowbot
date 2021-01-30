@@ -17,6 +17,7 @@ jobs:
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: talk-to-saumil
+          region: us-west2
           runtime: python38
           credentials: ${{ secrets.gcp_credentials }}
           source_dir: models/functions
@@ -38,6 +39,7 @@ jobs:
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: talk-to-jai
+          region: us-west2
           runtime: python38
           credentials: ${{ secrets.gcp_credentials }}
           source_dir: models/functions
@@ -59,6 +61,7 @@ jobs:
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: talk-to-diana
+          region: us-west2
           runtime: python38
           credentials: ${{ secrets.gcp_credentials }}
           source_dir: models/functions
