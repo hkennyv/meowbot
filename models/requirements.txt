@@ -1,4 +1,5 @@
 aitextgen
+google-cloud-storage
 
 black
 isort
