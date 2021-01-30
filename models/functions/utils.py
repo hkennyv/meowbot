@@ -7,16 +7,25 @@ from aitextgen import aitextgen
 from google.cloud import storage
 
 
-# cache models for serverless function
-client = storage.Client("gpt2-models")
-bucket = client.get_bucket("gpt2-models")
+# cache model to lower response times
+TMP_PATH = Path(os.environ.get("TMP_DIR", "./"))
+if not (TMP_PATH / "model.bin").exists():
 
-# download 
-pytorch_model = bucket.get_blob(f"trained_models/{os.environ.get('model_name')}/v1/pytorch_model.bin")
-pytorch_model.download_to_filename("/tmp/model.bin")
+    client = storage.Client("gpt2-models")
+    bucket = client.get_bucket("gpt2-models")
 
-config = bucket.get_blob(f"trained_models/{os.environ.get('model_name')}/v1/config.json")
-config.download_to_filename("/tmp/config.json")
+    pytorch_model = bucket.get_blob(
+        f"trained_models/{os.environ.get('model_name')}/v1/pytorch_model.bin"
+    )
+    pytorch_model.download_to_filename("model.bin")
+
+    config = bucket.get_blob(
+        f"trained_models/{os.environ.get('model_name')}/v1/config.json"
+    )
+    config.download_to_filename("config.json")
+
+ai = aitextgen(model=Path("model.bin"), config=Path("config.json"))
+
 
 def generate_text_from_model(
     n: int,
@@ -25,11 +34,11 @@ def generate_text_from_model(
     max_length: int = 256,
     temperature: float = 1.5,
     top_p: float = 0.7,
-    **kwargs
+    **kwargs,
 ) -> Optional[str]:
-    ai = aitextgen(model="/tmp/model.bin", config="/tmp/config.json")
 
     res = ai.generate(
+        batch_size=5,
         n=n,
         prompt=prompt,
         min_length=min_length,

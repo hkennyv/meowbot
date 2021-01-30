@@ -2,9 +2,7 @@ from utils import generate_text_from_model
 
 
 def handler(request):
-    base_url = request.base_url
-
-    prompt = request.args.get("prompt", "")
+    prompt = request.args.get("prompt", None)
     n = int(request.args.get("n", 1))
 
     print(f"{prompt=} {n=}")
