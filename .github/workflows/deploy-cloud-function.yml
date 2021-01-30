@@ -1,0 +1,71 @@
+# This workflow publishes the python functions to gcloud
+name: gcloud-publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  publish-saumil:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - id: deploy function
+        uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: talk-to-saumil
+          runtime: python38
+          credentials: ${{ secrets.gcp_credentials }}
+          source_dir: models/functions
+          entry_point: handler
+          max_instances: 3
+          env_vars: model_name=saumil,TMP_DIR=/tmp
+
+      # Example of using the output
+      - id: test
+        run: curl "${{ steps.deploy.outputs.url }}"
+
+  publish-jai:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - id: deploy function
+        uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: talk-to-jai
+          runtime: python38
+          credentials: ${{ secrets.gcp_credentials }}
+          source_dir: models/functions
+          entry_point: handler
+          max_instances: 3
+          env_vars: model_name=jai,TMP_DIR=/tmp
+
+      # Example of using the output
+      - id: test
+        run: curl "${{ steps.deploy.outputs.url }}"
+
+  publish-diana:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - id: deploy function
+        uses: google-github-actions/deploy-cloud-functions@main
+        with:
+          name: talk-to-diana
+          runtime: python38
+          credentials: ${{ secrets.gcp_credentials }}
+          source_dir: models/functions
+          entry_point: handler
+          max_instances: 3
+          env_vars: model_name=diana,TMP_DIR=/tmp
+
+      # Example of using the output
+      - id: test
+        run: curl "${{ steps.deploy.outputs.url }}"

@@ -9,20 +9,20 @@ from google.cloud import storage
 
 # cache model to lower response times
 TMP_PATH = Path(os.environ.get("TMP_DIR", "./"))
-if not (TMP_PATH / "model.bin").exists():
 
+if not (TMP_PATH / "model.bin").exists():
     client = storage.Client("gpt2-models")
     bucket = client.get_bucket("gpt2-models")
 
     pytorch_model = bucket.get_blob(
         f"trained_models/{os.environ.get('model_name')}/v1/pytorch_model.bin"
     )
-    pytorch_model.download_to_filename("model.bin")
+    pytorch_model.download_to_filename(TMP_PATH / "model.bin")
 
     config = bucket.get_blob(
         f"trained_models/{os.environ.get('model_name')}/v1/config.json"
     )
-    config.download_to_filename("config.json")
+    config.download_to_filename(TMP_PATH / "config.json")
 
 ai = aitextgen(model=Path("model.bin"), config=Path("config.json"))
 
@@ -49,4 +49,4 @@ def generate_text_from_model(
         **kwargs,
     )
 
-    return res
+    return [s.strip().replace("\n", " ") for s in res]
