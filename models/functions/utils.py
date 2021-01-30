@@ -1,5 +1,7 @@
 import os
 
+import torch
+
 from typing import Optional
 from pathlib import Path
 
@@ -24,7 +26,11 @@ if not (TMP_PATH / "model.bin").exists():
     )
     config.download_to_filename(TMP_PATH / "config.json")
 
-ai = aitextgen(model=TMP_PATH / "model.bin", config=TMP_PATH / "config.json")
+ai = aitextgen(
+    model=TMP_PATH / "model.bin",
+    config=TMP_PATH / "config.json",
+    to_gpu=torch.cuda.is_available(),
+)
 
 
 def generate_text_from_model(
