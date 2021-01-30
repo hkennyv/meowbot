@@ -19,6 +19,7 @@ jobs:
           name: talk-to-saumil
           region: us-west2
           runtime: python38
+          memory_mb: 2048
           credentials: ${{ secrets.gcp_credentials }}
           source_dir: models/functions
           entry_point: handler
@@ -41,6 +42,7 @@ jobs:
           name: talk-to-jai
           region: us-west2
           runtime: python38
+          memory_mb: 2048
           credentials: ${{ secrets.gcp_credentials }}
           source_dir: models/functions
           entry_point: handler
@@ -63,6 +65,7 @@ jobs:
           name: talk-to-diana
           region: us-west2
           runtime: python38
+          memory_mb: 2048
           credentials: ${{ secrets.gcp_credentials }}
           source_dir: models/functions
           entry_point: handler
