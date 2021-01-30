@@ -13,7 +13,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
-      - id: deploy function
+      - id: deploy
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: talk-to-saumil
@@ -34,7 +34,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
-      - id: deploy function
+      - id: deploy
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: talk-to-jai
@@ -55,7 +55,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
-      - id: deploy function
+      - id: deploy
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: talk-to-diana
