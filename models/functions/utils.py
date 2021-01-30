@@ -1,3 +1,4 @@
+import logging
 import os
 
 import torch
@@ -8,6 +9,8 @@ from pathlib import Path
 from aitextgen import aitextgen
 from google.cloud import storage
 
+
+logger = logging.getLogger(__name__).setLevel(logging.DEBUG)
 
 # cache model to lower response times
 TMP_PATH = Path(os.environ.get("TMP_DIR", "./"))
@@ -25,6 +28,8 @@ if not (TMP_PATH / "model.bin").exists():
         f"trained_models/{os.environ.get('model_name')}/v1/config.json"
     )
     config.download_to_filename(TMP_PATH / "config.json")
+
+logger.debug(f"{torch.cuda.is_available()=}")
 
 ai = aitextgen(
     model=TMP_PATH / "model.bin",
