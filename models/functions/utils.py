@@ -10,7 +10,8 @@ from aitextgen import aitextgen
 from google.cloud import storage
 
 
-logger = logging.getLogger(__name__).setLevel(logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 # cache model to lower response times
 TMP_PATH = Path(os.environ.get("TMP_DIR", "./"))
