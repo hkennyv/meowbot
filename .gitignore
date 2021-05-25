@@ -7,3 +7,10 @@ dist/
 
 # ide
 .vscode/
+
+# config files
+config.ini
+
+.DS_Store
+
+models/third-party/*
