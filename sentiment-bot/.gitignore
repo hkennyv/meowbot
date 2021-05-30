@@ -1,0 +1,8 @@
+config.ini
+
+.venv/
+venv/
+.vscode/
+.mypy_cache/
+
+__pycache__/
